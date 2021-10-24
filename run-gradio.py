@@ -1,7 +1,5 @@
 import tensorflow as tf
 import gradio as gr
-from gradio.inputs import Sketchpad
-from gradio.outputs import Label
 
 mnist_model = tf.keras.models.load_model('mnist-fashion-model.h5')
 
@@ -13,8 +11,8 @@ def predict(inp):
 	return {class_names[i]: prediction[i] for i in range(10)}
 
 
-sketchpad = Sketchpad()
-label = Label(num_top_classes=4)
+sketchpad = gradio.inputs.Sketchpad()
+label = gradio.outputs.Label(num_top_classes=4)
 
 gr.Interface(
 	predict, 
